@@ -5,7 +5,9 @@ function Home(){
   const [expenseData, setExpenseData] = useState({
     name: '',
     amount: 0,
-    category_id: 1
+    paid: false,
+    category_id: 1,
+    user_id: null
   })
   
   useEffect(() => {

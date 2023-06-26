@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
-function SignUpForm(){
+function SignUpForm({ onLogin }){
   const [signUpData, setSignUpData] = useState({
     first_name: '',
     last_name: '',
     email: '',
-    password: ''
+    password: '',
+    password_confirmation: '',
+    income: 0
   });
 
   function handleChange(e) {
@@ -24,20 +26,24 @@ function SignUpForm(){
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>First Name: </label>
-        <input type="text" name="first_name" value={signUpData.first_name} onChange={handleChange} />
-      </div>
-      <div>
-        <label>Last Name: </label>
-        <input type="text" name="last_name" value={signUpData.last_name} onChange={handleChange} />
-      </div>
-      <div>
         <label>Email: </label>
         <input type="email"  name="email" value={signUpData.email} onChange={handleChange} />
       </div>
       <div>
         <label>Password: </label>
         <input type="password" name="password" value={signUpData.password} onChange={handleChange} />
+      </div>
+      <div>
+        <label>Confirm Password: </label>
+        <input type="password" name="password_confirmation" value={signUpData.password_confirmation} onChange={handleChange} />
+      </div>
+      <div>
+        <label>First Name: </label>
+        <input type="text" name="first_name" value={signUpData.first_name} onChange={handleChange} />
+      </div>
+      <div>
+        <label>Last Name: </label>
+        <input type="text" name="last_name" value={signUpData.last_name} onChange={handleChange} />
       </div>
       <button type="submit">Sign Up</button>
     </form>

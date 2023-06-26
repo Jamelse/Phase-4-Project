@@ -1,38 +1,22 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import LoginForm from './forms/LoginForm';
+import SignUpForm from './forms/SignupForm';
 
-function Login(){
-
-  const [loginData, setLoginData] = useState({
-    email: '',
-    password: ''
-  })
-  const navigate = useNavigate();
-
-  function handleChange(e) {
-    const key = e.target.name
-    setLoginData({
-      ...loginData,
-      [key]: e.target.value
-    });
-  };
-
+function Login({onLogin}){
+  const [hasAccount, setHasAccount] = useState(true)
   return (
     <div>
-    <form>
-    <div>
-      <label>Email: </label>
-      <input type="email"  name="email" value={loginData.email} onChange={handleChange} />
+    { hasAccount ? 
+     <div>
+      <LoginForm onLogin={onLogin} />
+      <p>Don't have an account? <button onClick={() => setHasAccount(false)}>Sign Up</button></p> 
+     </div>
+    : <div> 
+      <SignUpForm onLogin={onLogin} /> 
+      <p>Already have an account? <button onClick={() => setHasAccount(true)}>Log In</button></p> 
+      </div>}
     </div>
-    <div>
-      <label>Password: </label>
-      <input type="password" name="password" value={loginData.password} onChange={handleChange} />
-    </div>
-    <button type="submit">Login</button>
-  </form>
-  <p>Don't have an account? <button onClick={() => navigate('/signup')}>Sign Up</button></p> 
-  </div>
-  );
+  )
 }
 
 export default Login
