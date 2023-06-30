@@ -1,14 +1,18 @@
 import React, {useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-function Home(){
-  const [categories, setCategories] = useState([])
+function Home({ user, setUserExpenses, expenses }){
+  const [categories, setCategories] = useState([]);
   const [expenseData, setExpenseData] = useState({
     name: '',
     amount: 0,
+    date: '',
     paid: false,
     category_id: 1,
-    user_id: null
-  })
+    user_id: user.id
+  });
+  const navigate = useNavigate();
+  const [errors, setErrors] = useState([]);
   
   useEffect(() => {
     fetch('/categories')
@@ -24,10 +28,37 @@ function Home(){
     });
   };
 
-  console.log(expenseData)
+  function handleExpenseSubmit(e){
+    e.preventDefault();
+    fetch("/expenses", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(expenseData),
+    }) .then((r) => {
+      if (r.ok){
+        r.json()
+        .then((expense) => { setUserExpenses(expense)
+          setExpenseData({
+            name: '',
+            amount: 0,
+            date: '',
+            paid: false,
+            category_id: 1,
+            user_id: user.id
+          })
+          navigate("/")})
+      } else {
+        r.json()
+        .then((err) => setErrors(err.errors));
+      }
+    })
+  }
 
   return (
-    <form>
+    <div>
+    <form onSubmit={handleExpenseSubmit}>
       <div>
       <label>Category: </label>
       <select name="category_id" onChange={handleChange}>
@@ -46,8 +77,20 @@ function Home(){
       <label>Amount: </label>
       <input  name="amount" value={expenseData.amount} onChange={handleChange} />
     </div>
+    <div>
+    <label>Paid / To Be Paid On: </label>
+      <input type="date" name="date" value={expenseData.date} onChange={handleChange}/>
+    </div>
     <button type="submit">Create</button>
   </form>
+  {expenses.map((expense) => {
+    return (
+      <>
+        <p>{expense.name}</p>
+      </>
+    )
+  })}
+  </div>
   )
 }
 

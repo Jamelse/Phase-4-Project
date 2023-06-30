@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpForm({ onLogin }){
   const [signUpData, setSignUpData] = useState({
@@ -9,6 +10,8 @@ function SignUpForm({ onLogin }){
     password_confirmation: '',
     income: 0
   });
+  const [errors, setErrors] = useState([]);
+  const navigate = useNavigate();
 
   function handleChange(e) {
     const key = e.target.name
@@ -21,7 +24,26 @@ function SignUpForm({ onLogin }){
 
   function handleSubmit(e){
     e.preventDefault();
+    setErrors([]);
+    fetch("/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signUpData),
+    }).then((r) => {
+      if (r.ok) {
+        r.json()
+        .then((user) => {onLogin(user)
+          navigate("/")});
+      } else {
+        r.json()
+        .then((err) => setErrors(err.errors));
+      }
+    });
   };
+
+  console.log(errors)
     
   return (
     <form onSubmit={handleSubmit}>
