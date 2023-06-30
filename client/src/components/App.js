@@ -6,28 +6,22 @@ import Home from './Home';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [userExpenses, setUserExpenses] = useState([]);
 
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => {setCurrentUser(user)
-        setUserExpenses(user.expenses)});
+        r.json().then((user) => setCurrentUser(user));
       }
     });
   }, []);
 
-  function handleSetUserExpenses(expense){
-    setUserExpenses([...userExpenses, expense])
-  }
-
   if (!currentUser) return <Login onLogin={setCurrentUser} />;
-
+  console.log(currentUser)
   return (
     <div className="App">
       <NavBar setCurrentUser={setCurrentUser} />
       <Routes>
-        <Route path='/' element={ <Home user={currentUser} expenses={userExpenses} setUserExpenses={handleSetUserExpenses}/> }></Route>
+        <Route path='/' element={ <Home user={currentUser} expenses={currentUser.expenses} /> }></Route>
       </Routes>
       
     </div>
