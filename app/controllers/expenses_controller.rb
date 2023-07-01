@@ -5,8 +5,7 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    expenses = Expense.create!(expense_params)
-    render json: expenses, status: :created
+   render json: Expense.create!(expense_params), status: :created
   end
 
   def update

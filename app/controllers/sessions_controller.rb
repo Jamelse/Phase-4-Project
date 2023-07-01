@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController 
+  skip_before_action :unauthorized_error_message, only: [:create]
   
   def create
     user = User.find_by(email: params[:email])

@@ -46,24 +46,19 @@ function SignUpForm({ onLogin }){
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Email: </label>
-        <input type="email"  name="email" value={signUpData.email} onChange={handleChange} />
+        <label>Email: <input type="email"  name="email" value={signUpData.email} onChange={handleChange} autoComplete="off"/></label>  
       </div>
       <div>
-        <label>Password: </label>
-        <input type="password" name="password" value={signUpData.password} onChange={handleChange} />
+        <label>Password: <input type="password" name="password" value={signUpData.password} onChange={handleChange} /></label>    
       </div>
       <div>
-        <label>Confirm Password: </label>
-        <input type="password" name="password_confirmation" value={signUpData.password_confirmation} onChange={handleChange} />
+        <label>Confirm Password: <input type="password" name="password_confirmation" value={signUpData.password_confirmation} onChange={handleChange} /></label>
       </div>
       <div>
-        <label>First Name: </label>
-        <input type="text" name="first_name" value={signUpData.first_name} onChange={handleChange} />
+        <label>First Name: <input type="text" name="first_name" value={signUpData.first_name} onChange={handleChange} autoComplete="off"/></label>     
       </div>
       <div>
-        <label>Last Name: </label>
-        <input type="text" name="last_name" value={signUpData.last_name} onChange={handleChange} />
+        <label>Last Name: <input type="text" name="last_name" value={signUpData.last_name} onChange={handleChange} /></label> 
       </div>
       <button type="submit">Sign Up</button>
     </form>

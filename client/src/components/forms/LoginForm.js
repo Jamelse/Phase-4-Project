@@ -42,12 +42,10 @@ function LoginForm({ onLogin }){
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email: </label>
-          <input type="email"  name="email" value={loginData.email} onChange={handleChange} />
+          <label>Email: <input type="email"  name="email" value={loginData.email} onChange={handleChange} autoComplete="on"/></label> 
         </div>
         <div>
-          <label>Password: </label>
-          <input type="password" name="password" value={loginData.password} onChange={handleChange} />
+          <label>Password: <input type="password" name="password" value={loginData.password} onChange={handleChange} /></label>
         </div>
         <button type="submit">Login</button>
       </form>

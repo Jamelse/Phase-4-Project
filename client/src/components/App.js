@@ -15,8 +15,10 @@ function App() {
     });
   }, []);
 
-  if (!currentUser) return <Login onLogin={setCurrentUser} />;
   console.log(currentUser)
+
+  if (!currentUser) return <Login onLogin={setCurrentUser} />;
+  
   return (
     <div className="App">
       <NavBar setCurrentUser={setCurrentUser} />

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :unauthorized_error_message, only: [:create]
 
   def create 
     user = User.create!(user_params)
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.update(user_params)
+    user.update!(user_params)
     render json: user, status: :accepted
   end
 

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
-function NewExpenseForm({user, handleSetUserExpenses}){
+function NewExpenseForm({user, handleSetUserExpenses, setNewExpense}){
   const [categories, setCategories] = useState([]);
   const [expenseData, setExpenseData] = useState({
     name: '',
@@ -35,10 +35,13 @@ function NewExpenseForm({user, handleSetUserExpenses}){
         "Content-Type": "application/json",
       },
       body: JSON.stringify(expenseData),
-    }) .then((r) => {
+    })
+    .then((r) => {
       if (r.ok){
         r.json()
-        .then((expense) => { handleSetUserExpenses(expense)
+        .then((expense) => { 
+          handleSetUserExpenses(expense)
+          setNewExpense(false)
           setExpenseData({
             name: '',
             amount: 0,
@@ -58,29 +61,26 @@ function NewExpenseForm({user, handleSetUserExpenses}){
   <div>
     <form onSubmit={handleExpenseSubmit}>
       <div>
-      <label>Category: </label>
-      <select name="category_id" onChange={handleChange}>
+      <label>Category: <select name="category_id" onChange={handleChange}>
         {categories.map((cat) => {
           return (
             <option key={cat.id} value={cat.id}>{cat.name}</option>
           )
         })}
-      </select>
+      </select></label>  
     </div>
     <div>
-      <label>Name: </label>
-      <input  name="name" value={expenseData.name} onChange={handleChange} />
+      <label>Name: <input  name="name" value={expenseData.name} onChange={handleChange} /></label> 
     </div>
     <div>
-      <label>Amount: </label>
-      <input  name="amount" value={expenseData.amount} onChange={handleChange} />
+      <label>Amount: <input  name="amount" value={expenseData.amount} onChange={handleChange} /></label>  
     </div>
     <div>
-    <label>Paid On: </label>
-      <input type="date" name="paid_on" value={expenseData.date} onChange={handleChange}/>
+    <label>Paid On: <input type="date" name="paid_on" value={expenseData.date} onChange={handleChange}/></label>  
     </div>
     <button type="submit">Create</button>
   </form>
+  <button onClick={() => setNewExpense(false)}>Cancel</button>
 </div>
 
 )

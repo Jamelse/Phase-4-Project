@@ -16,10 +16,12 @@ function NavBar({ setCurrentUser }){
 
   return(
     <div className='navDiv'> 
+    <header className='navHeader'>
       <nav>
         <a>hi</a>
         <NavLink onClick={handleLogout} to='/login'>Logout</NavLink>
       </nav>
+    </header>
     </div>
   )
 }
