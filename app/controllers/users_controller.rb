@@ -18,6 +18,12 @@ class UsersController < ApplicationController
     render json: user, status: :accepted
   end
 
+  def reset
+    user = user = User.find(params[:id])
+    user.expenses.destroy
+    render json: {}, status: :no_content
+  end
+
   private
 
   def user_params

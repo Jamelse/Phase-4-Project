@@ -20,15 +20,7 @@ class ExpensesController < ApplicationController
     render json: {}, status: :no_content
   end
 
-  def reset 
-    expenses = Expense.all
-    expenses.destroy
-    render json: {}, status: :no_content
-  end
-
   private
-
-
 
   def expense_params
     params.permit(:name, :amount, :paid_on, :user_id, :category_id)
