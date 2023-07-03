@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function NewExpenseForm({user, handleSetUserExpenses, setNewExpense}){
-  const [categories, setCategories] = useState([]);
+function NewExpenseForm({user, handleSetUserExpenses, setNewExpense, categories}){
   const [expenseData, setExpenseData] = useState({
     name: '',
     amount: 0,
@@ -13,12 +12,7 @@ function NewExpenseForm({user, handleSetUserExpenses, setNewExpense}){
   const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
   
-  useEffect(() => {
-    fetch('/categories')
-    .then(r => r.json())
-    .then(category => setCategories(category))
-  }, []);
-
+  
   function handleChange(e) {
     const key = e.target.name
     setExpenseData({

@@ -20,6 +20,12 @@ class ExpensesController < ApplicationController
     render json: {}, status: :no_content
   end
 
+  def reset 
+    expenses = Expense.all
+    expenses.destroy
+    render json: {}, status: :no_content
+  end
+
   private
 
 
