@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function NewExpenseForm({user, handleSetUserExpenses, setNewExpense, categories}){
+function NewExpenseForm({ user, handleSetUserExpenses, setNewExpense, categories }){
   const [expenseData, setExpenseData] = useState({
     name: '',
     amount: 0,
@@ -36,13 +36,6 @@ function NewExpenseForm({user, handleSetUserExpenses, setNewExpense, categories}
         .then((expense) => { 
           handleSetUserExpenses(expense)
           setNewExpense(false)
-          setExpenseData({
-            name: '',
-            amount: 0,
-            paid_on: '',
-            category_id: 1,
-            user_id: user.id
-          })
           navigate("/")})
       } else {
         r.json()
