@@ -47,7 +47,7 @@ html .main {
 
 .homeContentDiv {
   width: 100%;
-  max-width: 56rem;
+  max-width: 60rem;
   min-width: 1px;
   margin: auto;
   position: relative;
@@ -75,6 +75,7 @@ html .main {
 }
 
 .incomeAndExpensesContentWrap {
+  width: 80%;
   padding-right: 3em;
   padding-left: 0;
   padding: 0 5.25rem 4em 1.25rem;
@@ -110,17 +111,77 @@ html .main {
   padding-bottom: 0.6rem;
 }
 
+.expenseListDiv {
+    margin-top: 5%;
+    max-height: 550px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2%;
+}
+
+.expenseListDiv::-webkit-scrollbar {
+  width: 3px;
+
+}
+
+.expenseListDiv::-webkit-scrollbar-track {
+  background: transparent;
+
+}
+
+.expenseListDiv::-webkit-scrollbar-thumb {
+  background: transparent;
+  transition: all 0.3s ease 0s;
+}
+
+.expenseListDiv:hover::-webkit-scrollbar-thumb {
+  background: #34495E;
+  
+}
+
+.expenseListItems {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#editExpenseButton {
+ margin-right: 5%;
+}
+
+.expenseName {
+  width: 100%;
+  margin-right: 5%;
+}
+
+.expenseAmount {
+  margin-right: 5%;
+}
+
+#deleteExpenseButton:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#editExpenseButton:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .budgetBreakdownWrap {
   position: sticky;
   top: 30px;
   padding-right: 0;
   padding-left: 2rem;
-  width: 50%;
+  width: 100%;
   flex-wrap: wrap;
   padding: 2rem 2rem 2rem 1rem;
   height: 0%;
   -webkit-box-pack: center;
   justify-content: center;
+  text-align: center;
+  
 }
 
 .material-icons {
@@ -129,6 +190,10 @@ html .main {
 
 button:hover {
   cursor: pointer;
+}
+
+.donut {
+  max-width: 760px;
 }
 
 .arrow_box {
@@ -160,14 +225,57 @@ button:hover {
   margin-top: -13px;
 }
 
-#chart .apexcharts-tooltip {
+.apexcharts-tooltip {
   color: #fff;
   transform: translateX(10px) translateY(10px);
   overflow: visible !important;
   white-space: normal !important;
 }
 
-#chart .apexcharts-tooltip span {
+.apexcharts-tooltip span {
   padding: 5px 10px;
   display: inline-block;
+}
+
+.budgetBreakDownTitle {
+  margin-top: 26px;
+  margin-bottom: 0;
+  font-size: 20px;
+  padding-bottom: 0.6rem;
+}
+
+.resetButton {
+  text-align: center;
+}
+
+.resetButton:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.remainingDiv {
+  border: 1px, #000000;
+  text-align: right;
+}
+
+.newExpenseFormDiv {
+  height: 100%;
+}
+
+.editForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 18px;
+  padding: 10px;
+}
+
+.formInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  font-size: 18px;
 }

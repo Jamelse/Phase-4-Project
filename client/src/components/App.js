@@ -15,7 +15,6 @@ function App() {
     });
   }, []);
 
-  console.log(currentUser)
 
   if (!currentUser) return <Login onLogin={setCurrentUser} />;
   

@@ -45,8 +45,8 @@ function NewExpenseForm({ user, handleSetUserExpenses, setNewExpense, categories
   }
 
   return (
-  <div>
-    <form onSubmit={handleExpenseSubmit}>
+  <div className="newExpenseFormDiv">
+    <form className="editForm" onSubmit={handleExpenseSubmit}>
       <div>
       <label>Category: <select name="category_id" onChange={handleChange}>
         {categories.map((cat) => {
@@ -57,13 +57,13 @@ function NewExpenseForm({ user, handleSetUserExpenses, setNewExpense, categories
       </select></label>  
     </div>
     <div>
-      <label>Name: <input  name="name" value={expenseData.name} onChange={handleChange} /></label> 
+      <label>Name: <input className="formInput"  name="name" value={expenseData.name} onChange={handleChange} /></label> 
     </div>
     <div>
-      <label>Amount: <input  name="amount" value={expenseData.amount} onChange={handleChange} /></label>  
+      <label>Amount: <input className="formInput" name="amount" value={expenseData.amount} onChange={handleChange} /></label>  
     </div>
     <div>
-    <label>Paid On: <input type="date" name="paid_on" value={expenseData.date} onChange={handleChange}/></label>  
+    <label>Paid On: <input className="formInput" type="date" name="paid_on" value={expenseData.date} onChange={handleChange}/></label>  
     </div>
     <button type="submit">Create</button>
   </form>
