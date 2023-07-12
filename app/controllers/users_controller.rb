@@ -19,8 +19,8 @@ class UsersController < ApplicationController
   end
 
   def reset
-    user = user = User.find(params[:id])
-    user.expenses.destroy
+    user = user = User.find_by(id: session[:user_id])
+    user.expenses.destroy_all
     render json: {}, status: :no_content
   end
 

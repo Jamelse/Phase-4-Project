@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 
-function NavBar({ setCurrentUser }){
+function NavBar({ currentUser, setCurrentUser }){
+  const [dropDown, setDropDown] = useState(false)
 
   function handleLogout(){
     fetch("/logout", {
@@ -16,12 +17,16 @@ function NavBar({ setCurrentUser }){
 
   return(
     <div className='navDiv'> 
-    <header className='navHeader'>
-      <nav>
-        <a>hi</a>
-        <NavLink onClick={handleLogout} to='/login'>Logout</NavLink>
-      </nav>
-    </header>
+      <ul>
+        <li className='appTitle'><NavLink className='appNavTitle' to="/">{`BudgetBud[:`}</NavLink></li>
+        <li>
+          <p className="navUserName" onClick={() => setDropDown(!dropDown)}>{currentUser.first_name} &#x25BE;</p>
+          { dropDown ? <ul className="dropdown">
+            <li className='dropDownList'><NavLink to='/profile' className='dropDownItems'>View Profile</NavLink></li>
+            <li className='dropDownList'><NavLink onClick={handleLogout} to='/login' className='dropDownItems'>Logout</NavLink></li>
+          </ul> : null}
+        </li>
+      </ul>
     </div>
   )
 }

@@ -62,24 +62,23 @@ function Home({ user, setUser }){
     series: []
   });
 
+
   function updateChartOptions(category){
-    const filteredCategories = category.filter(cat => cat.total_expense_cost > 0)
+    const filteredCategories = category.filter(cat => cat.total_expense_cost > 0);
     setChartOptions({
       options: {
         ...chartOptions,
         labels: filteredCategories?.map((cat) => cat.name)
       },
       series: filteredCategories?.map((cat) => cat.total_expense_cost)
-    })
+    });
   };
 
   useEffect(() => {
     fetch('/categories')
     .then(r => r.json())
     .then(category => { setCategories(category)
-      updateChartOptions(category)
-    })
-  }, []);
+      updateChartOptions(category)})}, []);
 
   function handleSetUserExpenses(expense){
     const newE = categories.map((cat) => {
@@ -89,6 +88,7 @@ function Home({ user, setUser }){
       }
       return cat;
      });
+
     setCategories(newE); 
     updateChartOptions(newE)
     setUserExpenses([...userExpenses, expense]);
@@ -96,15 +96,16 @@ function Home({ user, setUser }){
 
   function onDeletedExpense(expense){
     const removedE = categories.map((cat) => {
-      if (cat.id === expense.category_id) {
+      if (cat.id === expense.category.id) {
         return {...cat, 
           total_expense_cost: Number(cat.total_expense_cost -= expense.amount)};
       }
       return cat;
      });
+    
     setCategories(removedE); 
-    updateChartOptions(removedE)
-    setUserExpenses(userExpenses.filter(ex => ex.id != expense.id))
+    setUserExpenses(userExpenses.filter(ex => ex.id !== expense.id));
+    updateChartOptions(removedE);
   }
 
   function handleExpenseDelete(expense){
@@ -115,6 +116,24 @@ function Home({ user, setUser }){
         onDeletedExpense(expense)
       }
     })
+  };
+
+  function handleExpenseResetButton(){
+    fetch("/reset", {
+      method: "DELETE"
+    })
+    .then((r) => {
+      if (r.ok){
+        setUserExpenses([]);
+        setChartOptions({
+          options: {
+            ...chartOptions,
+            labels: []
+          },
+          series: []
+        })
+      }
+    });
   };
     
   if (!categories) return <h1>Loading...</h1>
@@ -162,12 +181,12 @@ return (
           </div>
         </div>
       <div className="budgetBreakdownWrap">  
-        <BudgetBreakdown chartOptions={chartOptions}/>
+        <BudgetBreakdown chartOptions={chartOptions} handleExpenseResetButton={handleExpenseResetButton}/>
       </div>
     </div>
     <div className="remainingDiv">
       <h3>Remaining:</h3>
-      <p>${user.income - userExpenses.map((expense) => expense.amount).reduce((a, b)=> a + b)}</p>
+      <p>${user.income - userExpenses.map((expense) => expense.amount).reduce((a, b)=> a + b, 0)}</p>
     </div>
   </div>
 </div>

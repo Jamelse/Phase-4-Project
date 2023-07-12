@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Chart from 'react-apexcharts';
 
-function BudgetBreakdown({ chartOptions, setUserExpenses }){
+function BudgetBreakdown({ chartOptions, handleExpenseResetButton }){
 
   return(
     <div className="budgetBreakdownContent">
@@ -10,7 +10,7 @@ function BudgetBreakdown({ chartOptions, setUserExpenses }){
       <div className="pie">
         <Chart options={chartOptions.options} series={chartOptions.series} type="pie"/>
       </div>
-      <p className="resetButton">Reset Expenses</p>
+      <p className="resetButton" onClick={handleExpenseResetButton}>Reset Expenses</p>
     </div>
   );
 }

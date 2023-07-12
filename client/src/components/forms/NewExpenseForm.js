@@ -48,7 +48,7 @@ function NewExpenseForm({ user, handleSetUserExpenses, setNewExpense, categories
   <div className="newExpenseFormDiv">
     <form className="editForm" onSubmit={handleExpenseSubmit}>
       <div>
-      <label>Category: <select name="category_id" onChange={handleChange}>
+      <label>Category: <select className="formInputSelect" name="category_id" onChange={handleChange}>
         {categories.map((cat) => {
           return (
             <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -67,7 +67,7 @@ function NewExpenseForm({ user, handleSetUserExpenses, setNewExpense, categories
     </div>
     <button type="submit">Create</button>
   </form>
-  <button onClick={() => setNewExpense(false)}>Cancel</button>
+  <button className="newExpenseFormCancelButton" onClick={() => setNewExpense(false)}>Cancel</button>
 </div>
 
 )

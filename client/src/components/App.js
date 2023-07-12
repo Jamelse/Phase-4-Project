@@ -15,12 +15,11 @@ function App() {
     });
   }, []);
 
-
   if (!currentUser) return <Login onLogin={setCurrentUser} />;
   
   return (
     <div className="App">
-      <NavBar setCurrentUser={setCurrentUser} />
+      <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Routes>
         <Route path='/' element={ <Home user={currentUser} setUser={setCurrentUser}/> }></Route>
       </Routes>

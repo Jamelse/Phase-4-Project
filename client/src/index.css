@@ -1,5 +1,6 @@
 *, ::after, ::before, html {
   box-sizing: border-box;
+  
 }
 
 div {
@@ -28,21 +29,112 @@ code {
     monospace;
 }
 
-.navHeader {
-display: flex;
-  justify-content: space-between;
+.appTitle {
+  margin-right: auto;
+}
+
+.appNavTitle {
+  display: flex;
+  color:#34495E;
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: 24px;
+  color: #34495E;
+}
+
+ul {
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
-  padding: 10px 10%;
+  padding: 5px 1%;
   background-color: #ffff;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2)
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  list-style: none;
+  text-align: center;
+  margin: 0;
+}
+
+ul li {
+display: inline-block;
+position: relative;
+}
+
+.navUserName {
+  display: block;
+  height: 100%;
+  margin: 0px 25px;
+  color: #34495E;
+  text-decoration: none;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.3s ease 0s;
+}
+
+.navUserName:hover {
+  cursor: pointer;
+}
+
+.dropdown {
+  width: 100%;
+  position: absolute;
+  z-index: 999;
+  display: block;
+  background-color: #fff;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
 
+.dropDownList {
+display: block;
+background: #fff;
+margin: 10px 10px;
+border-radius: 5%;
+transition: all 0.3s ease 0s;
+}
+
+.dropDownList:hover {
+  cursor: pointer;
+  color: #34495E;
+  text-decoration: underline;
+  background-color: #ccc;
+}
+
+.dropDownItems {
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+  color: #34495E;
+}
 
 html .main {
   flex: 1 0 auto;
   margin: 0 auto;
   padding: 0 1.25rem;
+}
+
+.material-icons {
+  font-size: 1rem;
+}
+
+button {
+  background-color: #34495E;
+  color: #ccc;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease 0s;
+}
+
+button:hover {
+  cursor: pointer;
+  color: #34495E;
+  background-color: #ccc;
 }
 
 .homeContentDiv {
@@ -98,6 +190,7 @@ html .main {
   margin-bottom: 0;
   font-size: 20px;
   padding-bottom: 0.6rem;
+  text-decoration: underline;
 }
 
 .expenseContent {
@@ -109,6 +202,7 @@ html .main {
   margin-bottom: 0;
   font-size: 20px;
   padding-bottom: 0.6rem;
+  text-decoration: underline;
 }
 
 .expenseListDiv {
@@ -144,6 +238,9 @@ html .main {
   width: 100%;
   display: flex;
   flex-direction: row;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(000, 000, 000, 0.25);
+  border-bottom-style: solid;
 }
 
 #editExpenseButton {
@@ -182,14 +279,6 @@ html .main {
   justify-content: center;
   text-align: center;
   
-}
-
-.material-icons {
-  font-size: 1rem;
-}
-
-button:hover {
-  cursor: pointer;
 }
 
 .donut {
@@ -242,6 +331,7 @@ button:hover {
   margin-bottom: 0;
   font-size: 20px;
   padding-bottom: 0.6rem;
+  text-decoration: underline;
 }
 
 .resetButton {
@@ -265,9 +355,9 @@ button:hover {
 .editForm {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  font-size: 18px;
-  padding: 10px;
+  align-items: left;
+  font-size: 16px;
+  margin: 10px;
 }
 
 .formInput {
@@ -277,5 +367,24 @@ button:hover {
   border-radius: 4px;
   box-sizing: border-box;
   margin-bottom: 20px;
-  font-size: 18px;
+  font-size: 16px;
+}
+
+.formInputSelect {
+  cursor: pointer;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+.newExpenseFormCancelButton {
+  margin: 10px;
 }
