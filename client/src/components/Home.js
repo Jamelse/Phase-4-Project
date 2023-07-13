@@ -62,6 +62,9 @@ function Home({ user, setUser }){
     series: []
   });
 
+  function capitalizeFirstLetter(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
 
   function updateChartOptions(category){
     const filteredCategories = category.filter(cat => cat.total_expense_cost > 0);
@@ -141,7 +144,7 @@ function Home({ user, setUser }){
 return (
  <div className="homeContentDiv">
   <div>
-    <h2>Hello, {user.first_name} {user.last_name}</h2>
+    <h2>Hello, {capitalizeFirstLetter(user.first_name)} {`${capitalizeFirstLetter(user.last_name)}!`}</h2>
   </div>
   <div className="mainBudgetDiv">
     <div className="contentWrap">

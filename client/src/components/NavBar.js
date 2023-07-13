@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 
 function NavBar({ currentUser, setCurrentUser }){
-  const [dropDown, setDropDown] = useState(false)
+  const [dropDown, setDropDown] = useState(false);
 
   function handleLogout(){
     fetch("/logout", {
@@ -13,7 +13,7 @@ function NavBar({ currentUser, setCurrentUser }){
         setCurrentUser(null);
       }
     });
-  }
+  };
 
   return(
     <div className='navDiv'> 
@@ -22,7 +22,7 @@ function NavBar({ currentUser, setCurrentUser }){
         <li>
           <p className="navUserName" onClick={() => setDropDown(!dropDown)}>{currentUser.first_name} &#x25BE;</p>
           { dropDown ? <ul className="dropdown">
-            <li className='dropDownList'><NavLink to='/profile' className='dropDownItems'>View Profile</NavLink></li>
+            <li className='dropDownList'><NavLink to='/profile/edit' className='dropDownItems'>Edit Profile</NavLink></li>
             <li className='dropDownList'><NavLink onClick={handleLogout} to='/login' className='dropDownItems'>Logout</NavLink></li>
           </ul> : null}
         </li>
