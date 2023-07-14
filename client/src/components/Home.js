@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import NewExpenseForm from "./forms/NewExpenseForm";
 import BudgetBreakdown from "./BudgetBreakdown";
 import IncomeForm from "./forms/IncomeForm";
-import { useNavigate }from "react-router-dom";
+
 
 function Home({ user, setUser }){
-  const navigate = useNavigate();
   const [userExpenses, setUserExpenses] = useState(user.expenses);
   const [categories, setCategories] = useState(null);
   const [newExpense, setNewExpense] = useState(false);
@@ -172,7 +171,8 @@ return (
                 {userExpenses.map((expense) => {
                   return (
                   <div className="expenseListItems" key={expense.id}>
-                    <p id="editExpenseButton" className="material-icons" onClick={() => navigate(`/expenses/${expense.id}`)}>edit</p>
+                    {console.log(expense)}
+                    <p>{expense.paid_on}</p>
                     <p className="expenseName"> {expense.name} </p>
                     <p className="expenseAmount"> ${expense.amount}</p> 
                     <p id="deleteExpenseButton" className="material-icons" onClick={() => handleExpenseDelete(expense)}>delete_forever</p>

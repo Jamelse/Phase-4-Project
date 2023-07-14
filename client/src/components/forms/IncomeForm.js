@@ -31,9 +31,9 @@ function IncomeForm({ setEditIncome, user, setUser }){
 
   return (
     <div>
-      <form onSubmit={onIncomeSubmit}>
+      <form onSubmit={onIncomeSubmit} className="editForm" >
     <div>
-      <label>Edit Income: <input  name="income" value={incomeData} onChange={(e) => setIncomeData(e.target.value)} /></label> 
+      <label>Edit Income: <input className="formInput" name="income" value={incomeData} onChange={(e) => setIncomeData(e.target.value)} /></label> 
     </div>
     <button type="submit">Submit</button>
   </form>
