@@ -39,13 +39,13 @@ function LoginForm({ onLogin }){
   }
 
   return (
-    <div>
+    <div className='loginSignUpContainer'>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email: <input type="email"  name="email" value={loginData.email} onChange={handleChange} autoComplete="on"/></label> 
+          <label>Email: <input className="loginSignUpInput" type="email"  name="email" value={loginData.email} onChange={handleChange} autoComplete="on"/></label> 
         </div>
         <div>
-          <label>Password: <input type="password" name="password" value={loginData.password} onChange={handleChange} /></label>
+          <label>Password: <input className="loginSignUpInput" type="password" name="password" value={loginData.password} onChange={handleChange} /></label>
         </div>
         <button type="submit">Login</button>
       </form>

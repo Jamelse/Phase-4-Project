@@ -4,6 +4,7 @@ import Login from './Login';
 import NavBar from './NavBar';
 import Home from './Home';
 import EditUserProfileForm from './forms/EditUserProfileForm';
+import EditExpenseForm from './forms/EditExpenseForm';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path='/' element={ <Home user={currentUser} setUser={setCurrentUser}/> }></Route>
         <Route path='/profile/edit' element={ <EditUserProfileForm /> }></Route>
+        <Route path='/expenses/:id' element={ <EditExpenseForm /> }></Route>
       </Routes>
       
     </div>

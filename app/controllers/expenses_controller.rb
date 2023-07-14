@@ -4,6 +4,11 @@ class ExpensesController < ApplicationController
     render json: Expense.all
   end
 
+  def show 
+    expense = Expense.find(params[:id])
+    render json: expense
+  end
+
   def create
    render json: Expense.create!(expense_params), status: :created
   end

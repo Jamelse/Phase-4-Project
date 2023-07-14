@@ -8,13 +8,13 @@ function Login({onLogin}){
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="loginSignUpPage">
     { hasAccount ? 
-     <div>
+     <div className="loginSignUpContent">
       <LoginForm onLogin={onLogin} />
       <p>Don't have an account? <button onClick={() => {setHasAccount(false); navigate("/signup")}}>Sign Up</button></p> 
      </div>
-    : <div> 
+    : <div className="loginSignUpContent"> 
       <SignUpForm onLogin={onLogin} /> 
       <p>Already have an account? <button onClick={() => {setHasAccount(true); navigate("/login")}}>Log In</button></p> 
       </div>}

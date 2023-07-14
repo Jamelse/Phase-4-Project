@@ -29,6 +29,45 @@ code {
     monospace;
 }
 
+.loginSignUpPage {
+  width: 100%;
+  max-width: 40rem;
+  min-width: 1px;
+  margin: auto;
+  position: relative;
+  z-index: 89;
+  text-align: center;
+  
+}
+
+.loginSignUpContent {
+  position: relative;
+  margin: 1rem auto 2rem;
+  padding: 1rem;
+  border: 1px solid #a3a6b3;
+  font-size: .875rem;
+  line-height: 1.4;
+  background-color: #fff;
+  color: #111;
+}
+
+.loginSignUpContainer {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.loginSignUpInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .appTitle {
   margin-right: auto;
 }
