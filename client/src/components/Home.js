@@ -172,7 +172,7 @@ return (
                   return (
                   <div className="expenseListItems" key={expense.id}>
                     {console.log(expense)}
-                    <p>{expense.paid_on}</p>
+                    <p className="expenseDate">{expense.paid_on.substring(5)}</p>
                     <p className="expenseName"> {expense.name} </p>
                     <p className="expenseAmount"> ${expense.amount}</p> 
                     <p id="deleteExpenseButton" className="material-icons" onClick={() => handleExpenseDelete(expense)}>delete_forever</p>
@@ -186,11 +186,21 @@ return (
         </div>
       <div className="budgetBreakdownWrap">  
         <BudgetBreakdown chartOptions={chartOptions} handleExpenseResetButton={handleExpenseResetButton}/>
+        <div className="remainingDiv">
+          <div className="remainingDivContent">
+            <h3 className="remainingDivTitles">Total Income:</h3>
+            <p className="remainingDivAmounts">${user.income}</p>
+          </div>
+          <div className="remainingDivContent">
+            <h3 className="remainingDivTitles">Total Expenses:</h3> 
+            <p className="remainingDivAmounts">${userExpenses.map((expense) => expense.amount).reduce((a, b)=> a + b, 0)}</p>
+          </div>
+          <div className="remainingDivTotals">
+            <h3 className="remainingDivTitles">Remaining:</h3>
+            <p className="remainingDivAmounts">${user.income - userExpenses.map((expense) => expense.amount).reduce((a, b)=> a + b, 0)}</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div className="remainingDiv">
-      <h3>Remaining:</h3>
-      <p>${user.income - userExpenses.map((expense) => expense.amount).reduce((a, b)=> a + b, 0)}</p>
     </div>
   </div>
 </div>
