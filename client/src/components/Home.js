@@ -139,8 +139,24 @@ function Home({ user, setUser }){
       }
     });
   };
+
+  function budgetBreakdownMessage(){
+    const uExpenses = userExpenses.map((expense) => expense.amount).reduce((a, b)=> a + b, 0)
+    if ( uExpenses === 0){
+      return null
+    } else if (user.income - uExpenses > 0){
+      return(
+        <>
+        <p className="greenMessage"><span className="material-icons">check</span>Great! You're currently spending less than your total income!</p>
+        </>
+      );
+    } else 
+    return (
+      <p className="redMessage"><span className="material-icons">priority_high</span> You're currently spending more than you earn!</p>
+    )
+  }
     
-  if (!categories) return <h1>Loading...</h1>
+  if (!categories) return <h1 className="loading">Loading...</h1>
 
 return (
  <div className="homeContentDiv">
@@ -200,6 +216,7 @@ return (
             <p className="remainingDivAmounts">${user.income - userExpenses.map((expense) => expense.amount).reduce((a, b)=> a + b, 0)}</p>
           </div>
         </div>
+        {budgetBreakdownMessage()}
       </div>
     </div>
   </div>
