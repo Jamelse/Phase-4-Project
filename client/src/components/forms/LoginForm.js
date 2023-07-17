@@ -19,6 +19,7 @@ function LoginForm({ onLogin }){
 
   function handleSubmit(e){
     e.preventDefault();
+    setErrors([]);
     fetch("/login", {
       method: "POST",
       headers: {
@@ -40,6 +41,13 @@ function LoginForm({ onLogin }){
 
   return (
     <div className='loginSignUpContainer'>
+      <div className="errorsDiv">
+      {errors.map(error => {
+        return (
+         <p className="errorMessage" key={error}><span className="material-icons">priority_high</span>{error}</p>
+        )
+      })}
+    </div>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email: <input className="loginSignUpInput" type="email"  name="email" value={loginData.email} onChange={handleChange} autoComplete="on"/></label> 

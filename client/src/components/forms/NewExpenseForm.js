@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function NewExpenseForm({ user, handleSetUserExpenses, setNewExpense, categories }){
+function NewExpenseForm({ user, handleSetUserExpenses, categories }){
   const [expenseData, setExpenseData] = useState({
     name: '',
     amount: 0,
@@ -9,9 +9,8 @@ function NewExpenseForm({ user, handleSetUserExpenses, setNewExpense, categories
     category_id: 1,
     user_id: user.id
   });
-  const navigate = useNavigate();
   const [errors, setErrors] = useState([]);
-  
+  const navigate = useNavigate();
   
   function handleChange(e) {
     const key = e.target.name
@@ -23,6 +22,7 @@ function NewExpenseForm({ user, handleSetUserExpenses, setNewExpense, categories
 
   function handleExpenseSubmit(e){
     e.preventDefault();
+    setErrors([]);
     fetch("/expenses", {
       method: "POST",
       headers: {
@@ -35,17 +35,23 @@ function NewExpenseForm({ user, handleSetUserExpenses, setNewExpense, categories
         r.json()
         .then((expense) => { 
           handleSetUserExpenses(expense)
-          setNewExpense(false)
           navigate("/")})
       } else {
         r.json()
         .then((err) => setErrors(err.errors));
       }
     })
-  }
+  };
 
   return (
   <div className="newExpenseFormDiv">
+    <div className="errorsDiv">
+      {errors.map(error => {
+        return (
+         <p className="errorMessage"><span className="material-icons">priority_high</span>{error}</p>
+        )
+      })}
+    </div>
     <form className="editForm" onSubmit={handleExpenseSubmit}>
       <div>
       <label>Category: <select className="formInputSelect" name="category_id" onChange={handleChange}>
@@ -67,7 +73,7 @@ function NewExpenseForm({ user, handleSetUserExpenses, setNewExpense, categories
     </div>
     <button type="submit">Create</button>
   </form>
-  <button className="newExpenseFormCancelButton" onClick={() => setNewExpense(false)}>Cancel</button>
+  
 </div>
 
 )

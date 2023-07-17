@@ -6,6 +6,7 @@ function IncomeForm({ setEditIncome, user, setUser }){
 
   function onIncomeSubmit(e){
     e.preventDefault();
+    setErrors([]);
     fetch(`/users/${user.id}`, {
       method: "PATCH",
       headers: {
@@ -31,13 +32,20 @@ function IncomeForm({ setEditIncome, user, setUser }){
 
   return (
     <div>
+      <div className="errorsDiv">
+      {errors.map(error => {
+        return (
+         <p className="errorMessage"><span className="material-icons">priority_high</span>{error}</p>
+        )
+      })}
+    </div>
       <form onSubmit={onIncomeSubmit} className="editForm" >
     <div>
       <label>Edit Income: <input className="formInput" name="income" value={incomeData} onChange={(e) => setIncomeData(e.target.value)} /></label> 
     </div>
     <button type="submit">Submit</button>
   </form>
-  <button onClick={() => setEditIncome(false)}>Cancel</button>
+  <button className="incomeCancelButton" onClick={() => setEditIncome(false)}>Cancel</button>
     </div>
   );
 }

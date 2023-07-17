@@ -240,6 +240,15 @@ button:hover {
   text-decoration: underline;
 }
 
+.userIncome {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.incomeCancelButton {
+  margin: 10px;
+}
+
 .expenseContent {
   width: 100%;
 }
@@ -503,4 +512,20 @@ input::-webkit-calendar-picker-indicator {
   font-size: .875rem;
   line-height: 1.4;
   color: #111;
+}
+
+.cancelButton {
+  margin: 10px;
+}
+
+.errorsDiv {
+  width: fit-content;
+  border-radius: 10px;
+  background-color: rgba(255, 0, 0, 0.15);
+}
+
+.errorMessage {
+  padding: 5px;
+  color: red;
+  font-size: 1rem;
 }

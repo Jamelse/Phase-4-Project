@@ -3,7 +3,6 @@ import NewExpenseForm from "./forms/NewExpenseForm";
 import BudgetBreakdown from "./BudgetBreakdown";
 import IncomeForm from "./forms/IncomeForm";
 
-
 function Home({ user, setUser }){
   const [userExpenses, setUserExpenses] = useState(user.expenses);
   const [categories, setCategories] = useState(null);
@@ -50,13 +49,12 @@ function Home({ user, setUser }){
       tooltip: {
         custom: ({ series, seriesIndex, w }) => {
           return (
-            '<div class="arrow_box">' +
-            "<span>" +
-            w.globals.labels[seriesIndex] +
-            ": " + "$" +
-            series[seriesIndex] +
-            "</span>" +
-            "</div>"
+            `<div class="arrow_box"> 
+            <span>
+            ${w.globals.labels[seriesIndex]}:
+            $${series[seriesIndex]}
+            </span>
+            </div>`
           );
         }
       }},
@@ -71,13 +69,12 @@ function Home({ user, setUser }){
     const filteredCategories = category.filter(cat => cat.total_expense_cost > 0);
     setChartOptions({
       options: {
-        ...chartOptions,
         labels: filteredCategories?.map((cat) => cat.name)
       },
       series: filteredCategories?.map((cat) => cat.total_expense_cost)
     });
   };
-
+  
   useEffect(() => {
     fetch('/categories')
     .then(r => r.json())
@@ -86,7 +83,7 @@ function Home({ user, setUser }){
 
   function handleSetUserExpenses(expense){
     const newE = categories.map((cat) => {
-      if (cat.id === expense.category.id) {
+      if (cat.id === expense.category_id) {
         return {...cat, 
           total_expense_cost: Number(cat.total_expense_cost += expense.amount)};
       }
@@ -94,13 +91,14 @@ function Home({ user, setUser }){
      });
 
     setCategories(newE); 
-    updateChartOptions(newE)
+    updateChartOptions(newE);
     setUserExpenses([...userExpenses, expense]);
+    setNewExpense(false);
   };
 
   function onDeletedExpense(expense){
     const removedE = categories.map((cat) => {
-      if (cat.id === expense.category.id) {
+      if (cat.id === expense.category_id) {
         return {...cat, 
           total_expense_cost: Number(cat.total_expense_cost -= expense.amount)};
       }
@@ -140,15 +138,14 @@ function Home({ user, setUser }){
     });
   };
 
+
   function budgetBreakdownMessage(){
     const uExpenses = userExpenses.map((expense) => expense.amount).reduce((a, b)=> a + b, 0)
     if ( uExpenses === 0){
       return null
     } else if (user.income - uExpenses > 0){
       return(
-        <>
         <p className="greenMessage"><span className="material-icons">check</span>Great! You're currently spending less than your total income!</p>
-        </>
       );
     } else 
     return (
@@ -171,23 +168,24 @@ return (
             <h2 className="incomeTitle">Income:</h2>
             { !editIncome ?
             <div>
-              <p>{`$${user.income}`}</p>
+              <p className="userIncome">{`$${user.income}`}</p>
               <button onClick={() => setEditIncome(true)}>Edit</button>
             </div> 
-             : <IncomeForm setEditIncome={setEditIncome} user={user} setUser={setUser}/>}  
+             :
+             <IncomeForm setEditIncome={setEditIncome} user={user} setUser={setUser}/>}  
           </div>
           <div className="expenseContent">
             <h2 className="expenseTitle">Expenses:</h2>
             { newExpense ? 
             <>
-              <NewExpenseForm user={user} handleSetUserExpenses={handleSetUserExpenses} setNewExpense={setNewExpense} categories={categories} />
+              <NewExpenseForm user={user} handleSetUserExpenses={handleSetUserExpenses} categories={categories}/>
+              <button className="newExpenseFormCancelButton" onClick={() => setNewExpense(false)}>Cancel</button>
             </>
             :<div>
               <div className="expenseListDiv" >
                 {userExpenses.map((expense) => {
                   return (
                   <div className="expenseListItems" key={expense.id}>
-                    {console.log(expense)}
                     <p className="expenseDate">{expense.paid_on.substring(5)}</p>
                     <p className="expenseName"> {expense.name} </p>
                     <p className="expenseAmount"> ${expense.amount}</p> 

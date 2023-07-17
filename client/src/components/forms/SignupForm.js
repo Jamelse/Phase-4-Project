@@ -45,6 +45,13 @@ function SignUpForm({ onLogin }){
     
   return (
     <div className='loginSignUpContainer'>
+      <div className="errorsDiv">
+      {errors.map(error => {
+        return (
+         <p className="errorMessage" key={error}><span className="material-icons">priority_high</span>{error}</p>
+        )
+      })}
+    </div>
     <form onSubmit={handleSubmit}>
       <div>
         <label>Email: <input className="loginSignUpInput" type="email"  name="email" value={signUpData.email} onChange={handleChange} autoComplete="off"/></label>  

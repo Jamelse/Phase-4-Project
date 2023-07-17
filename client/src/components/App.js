@@ -23,7 +23,7 @@ function App() {
       <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} />
       <Routes>
         <Route path='/' element={ <Home user={currentUser} setUser={setCurrentUser}/> }></Route>
-        <Route path='/profile/edit' element={ <EditUserProfileForm /> }></Route>
+        <Route path='/profile/edit' element={ <EditUserProfileForm user={currentUser} setUser={setCurrentUser}/> }></Route>
       </Routes>
       
     </div>
