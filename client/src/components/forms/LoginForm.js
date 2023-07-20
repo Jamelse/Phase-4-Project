@@ -50,7 +50,7 @@ function LoginForm({ onLogin }){
     </div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email: <input className="loginSignUpInput" type="email"  name="email" value={loginData.email} onChange={handleChange} autoComplete="on"/></label> 
+          <label>Email: <input className="loginSignUpInput" type="email"  name="email" value={loginData.email} onChange={handleChange} autoComplete="off"/></label> 
         </div>
         <div>
           <label>Password: <input className="loginSignUpInput" type="password" name="password" value={loginData.password} onChange={handleChange} /></label>

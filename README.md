@@ -49,7 +49,7 @@ npm start --prefix-client
 - delete an individual expense or reset all of your expenses for the month anytime
 
 ## Video Walkthrough
-[]()
+[https://youtu.be/vbyR7BtXPqE](https://youtu.be/vbyR7BtXPqE)
 
 ## License
 #### Copyright 2023 Jacob Amelse
