@@ -20,7 +20,7 @@ function NavBar({ currentUser, setCurrentUser }){
       <ul>
         <li className='appTitle'><NavLink className='appNavTitle' to="/">{`BudgetBud[:`}</NavLink></li>
         <li>
-          <p className="navUserName" onClick={() => setDropDown(!dropDown)}>{currentUser.first_name} &#x25BE;</p>
+          <p className="navUserName" onClick={() => setDropDown(!dropDown)}>{currentUser.first_name}  { !dropDown ? <span>&#x25BE;</span> : <span>&#x25b4;</span>}</p>
           { dropDown ? <ul className="dropdown">
             <li className='dropDownList'><NavLink to='/profile/edit' className='dropDownItems'>Edit Profile</NavLink></li>
             <li className='dropDownList'><NavLink onClick={handleLogout} to='/login' className='dropDownItems'>Logout</NavLink></li>
