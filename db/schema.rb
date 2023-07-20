@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2023_05_26_233401) do
   create_table "expenses", force: :cascade do |t|
     t.string "name"
     t.integer "amount", default: 0
-    t.date "paid_on"
+    t.date "date"
     t.integer "user_id"
     t.integer "category_id"
   end

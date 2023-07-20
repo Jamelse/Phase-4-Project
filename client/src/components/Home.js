@@ -186,7 +186,7 @@ return (
                 {userExpenses.map((expense) => {
                   return (
                   <div className="expenseListItems" key={expense.id}>
-                    <p className="expenseDate">{expense.paid_on.substring(5)}</p>
+                    <p className="expenseDate">{expense.date.substring(5)}</p>
                     <p className="expenseName"> {expense.name} </p>
                     <p className="expenseAmount"> ${expense.amount}</p> 
                     <p id="deleteExpenseButton" className="material-icons" onClick={() => handleExpenseDelete(expense)}>delete_forever</p>

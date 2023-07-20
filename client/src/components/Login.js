@@ -11,10 +11,12 @@ function Login({onLogin}){
     <div className="loginSignUpPage">
     { hasAccount ? 
      <div className="loginSignUpContent">
+      <h1 className="budgetBudETitle">{`BudgetBUD[:`}</h1>
       <LoginForm onLogin={onLogin} />
       <p>Don't have an account? <button onClick={() => {setHasAccount(false); navigate("/signup")}}>Sign Up</button></p> 
      </div>
     : <div className="loginSignUpContent"> 
+      <h1 className="budgetBudETitle">{`BudgetBUD[:`}</h1>
       <SignUpForm onLogin={onLogin} /> 
       <p>Already have an account? <button onClick={() => {setHasAccount(true); navigate("/login")}}>Log In</button></p> 
       </div>}

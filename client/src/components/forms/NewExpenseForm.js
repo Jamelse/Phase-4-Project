@@ -5,7 +5,7 @@ function NewExpenseForm({ user, handleSetUserExpenses, categories }){
   const [expenseData, setExpenseData] = useState({
     name: '',
     amount: 0,
-    paid_on: '',
+    date: '',
     category_id: 1,
     user_id: user.id
   });
@@ -69,7 +69,7 @@ function NewExpenseForm({ user, handleSetUserExpenses, categories }){
       <label>Amount: <input className="formInput" name="amount" value={expenseData.amount} onChange={handleChange} /></label>  
     </div>
     <div>
-    <label>Paid On: <input className="formInput" type="date" name="paid_on" value={expenseData.date} onChange={handleChange}/></label>  
+    <label>Paid On: <input className="formInput" type="date" name="date" value={expenseData.date} onChange={handleChange}/></label>  
     </div>
     <button type="submit">Create</button>
   </form>

@@ -29,6 +29,11 @@ code {
     monospace;
 }
 
+.budgetBudETitle {
+  font-family: 'Gentium Book Plus', serif;
+  font-family: 'Pacifico', cursive;
+}
+
 .loginSignUpPage {
   width: 100%;
   max-width: 40rem;
@@ -84,6 +89,8 @@ code {
   display: flex;
   color:#34495E;
   text-decoration: none;
+  font-family: 'Gentium Book Plus', serif;
+  font-family: 'Pacifico', cursive;
   font-weight: bolder;
   font-size: 24px;
   color: #34495E;

@@ -3,5 +3,5 @@ class Expense < ApplicationRecord
   belongs_to :category
   validates :name, presence: true
   validates :amount, presence: true, allow_nil: false
-  validates :paid_on, presence: true
+  validates :date, presence: true
 end
