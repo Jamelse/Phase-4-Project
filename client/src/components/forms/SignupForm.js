@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../UserProvider';
 
-function SignUpForm({ onLogin }){
+function SignUpForm(){
+  const {setUser} = useContext(UserContext);
   const [signUpData, setSignUpData] = useState({
     first_name: '',
     last_name: '',
@@ -12,6 +14,7 @@ function SignUpForm({ onLogin }){
   });
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
+  
 
   function handleChange(e) {
     const key = e.target.name
@@ -34,7 +37,7 @@ function SignUpForm({ onLogin }){
     }).then((r) => {
       if (r.ok) {
         r.json()
-        .then((user) => {onLogin(user)
+        .then((user) => {setUser(user)
           navigate("/")});
       } else {
         r.json()

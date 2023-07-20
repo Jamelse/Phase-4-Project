@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../UserProvider";
 
-function NewExpenseForm({ user, handleSetUserExpenses, categories }){
+function NewExpenseForm({ handleSetUserExpenses, categories }){
+  const {user} = useContext(UserContext);
   const [expenseData, setExpenseData] = useState({
     name: '',
     amount: 0,

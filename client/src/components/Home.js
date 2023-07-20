@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import NewExpenseForm from "./forms/NewExpenseForm";
 import BudgetBreakdown from "./BudgetBreakdown";
 import IncomeForm from "./forms/IncomeForm";
+import { UserContext } from "./UserProvider";
 
-function Home({ user, setUser }){
+function Home(){
+  const {user} = useContext(UserContext);
   const [userExpenses, setUserExpenses] = useState(user.expenses);
   const [categories, setCategories] = useState(null);
   const [newExpense, setNewExpense] = useState(false);
@@ -172,13 +174,13 @@ return (
               <button onClick={() => setEditIncome(true)}>Edit</button>
             </div> 
              :
-             <IncomeForm setEditIncome={setEditIncome} user={user} setUser={setUser}/>}  
+             <IncomeForm setEditIncome={setEditIncome}/>}  
           </div>
           <div className="expenseContent">
             <h2 className="expenseTitle">Expenses:</h2>
             { newExpense ? 
             <>
-              <NewExpenseForm user={user} handleSetUserExpenses={handleSetUserExpenses} categories={categories}/>
+              <NewExpenseForm handleSetUserExpenses={handleSetUserExpenses} categories={categories}/>
               <button className="newExpenseFormCancelButton" onClick={() => setNewExpense(false)}>Cancel</button>
             </>
             :<div>

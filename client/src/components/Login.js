@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import LoginForm from './forms/LoginForm';
 import SignUpForm from './forms/SignupForm';
 
-function Login({onLogin}){
+function Login(){
   const [hasAccount, setHasAccount] = useState(true);
   const navigate = useNavigate();
 
@@ -12,12 +12,12 @@ function Login({onLogin}){
     { hasAccount ? 
      <div className="loginSignUpContent">
       <h1 className="budgetBudETitle">{`BudgetBUD[:`}</h1>
-      <LoginForm onLogin={onLogin} />
+      <LoginForm/>
       <p>Don't have an account? <button onClick={() => {setHasAccount(false); navigate("/signup")}}>Sign Up</button></p> 
      </div>
     : <div className="loginSignUpContent"> 
       <h1 className="budgetBudETitle">{`BudgetBUD[:`}</h1>
-      <SignUpForm onLogin={onLogin} /> 
+      <SignUpForm/> 
       <p>Already have an account? <button onClick={() => {setHasAccount(true); navigate("/login")}}>Log In</button></p> 
       </div>}
     </div>

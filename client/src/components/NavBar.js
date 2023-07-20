@@ -1,16 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom';
+import { UserContext } from './UserProvider';
 
-function NavBar({ currentUser, setCurrentUser }){
+function NavBar(){
+  const {user, setUser} = useContext(UserContext);
   const [dropDown, setDropDown] = useState(false);
-
+  
   function handleLogout(){
     fetch("/logout", {
       method: "DELETE"
     })
     .then((r) => {
       if (r.ok){
-        setCurrentUser(null);
+        setUser(null);
       }
     });
   };
@@ -20,7 +22,7 @@ function NavBar({ currentUser, setCurrentUser }){
       <ul>
         <li className='appTitle'><NavLink className='appNavTitle' to="/">{`BudgetBud[:`}</NavLink></li>
         <li>
-          <p className="navUserName" onClick={() => setDropDown(!dropDown)}>{currentUser.first_name}  { !dropDown ? <span>&#x25BE;</span> : <span>&#x25b4;</span>}</p>
+          <p className="navUserName" onClick={() => setDropDown(!dropDown)}>{user.first_name}  { !dropDown ? <span>&#x25BE;</span> : <span>&#x25b4;</span>}</p>
           { dropDown ? <ul className="dropdown">
             <li className='dropDownList'><NavLink to='/profile/edit' className='dropDownItems'>Edit Profile</NavLink></li>
             <li className='dropDownList'><NavLink onClick={handleLogout} to='/login' className='dropDownItems'>Logout</NavLink></li>

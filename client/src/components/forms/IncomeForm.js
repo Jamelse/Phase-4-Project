@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../UserProvider";
 
-function IncomeForm({ setEditIncome, user, setUser }){
+function IncomeForm({ setEditIncome }){
+  const {user, setUser} = useContext(UserContext);
   const [incomeData, setIncomeData] = useState(user.income);
   const [errors, setErrors] = useState([]);
 

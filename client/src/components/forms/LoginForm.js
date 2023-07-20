@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../UserProvider';
 
-function LoginForm({ onLogin }){
+function LoginForm(){
+  const {setUser} = useContext(UserContext);
   const [loginData, setLoginData] = useState({
     email: '',
     password: ''
@@ -30,7 +32,7 @@ function LoginForm({ onLogin }){
     .then((r) => {
       if (r.ok) {
         r.json()
-        .then((user) => {onLogin(user)
+        .then((user) => {setUser(user)
         navigate("/")})
       } else {
         r.json()
