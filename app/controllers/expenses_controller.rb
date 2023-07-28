@@ -10,17 +10,20 @@ class ExpensesController < ApplicationController
   end
 
   def create
-   render json: Expense.create!(expense_params), status: :created
+    user = User.find_by(id: session[:user_id])
+    render json: user.expenses.create!(expense_params), status: :created
   end
 
   def update
-    expense = Expense.find(params[:id])
+    user = User.find_by(id: session[:user_id])
+    expense = user.expenses.find(params[:id])
     expense.update!(expense_params)
     render json: expense, status: :accepted
   end
 
   def destroy
-    expense = Expense.find(params[:id])
+    user = User.find_by(id: session[:user_id])
+    expense = user.expenses.find(params[:id])
     expense.destroy
     render json: {}, status: :no_content
   end
@@ -28,6 +31,6 @@ class ExpensesController < ApplicationController
   private
 
   def expense_params
-    params.permit(:name, :amount, :date, :user_id, :category_id)
+    params.permit(:name, :amount, :date, :category_id)
   end
 end
